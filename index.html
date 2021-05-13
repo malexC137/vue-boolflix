@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="app">
+
+        <div>
+            <input type="text" v-model="querySearch">
+            <button @click="onSearchText">Cerca</button>
+        </div>
+        <div class="movie-card" v-for="movie in moviesList">
+            <!-- <h1 v-if="moviesList.length === 0">Spiacenti, non esistono film contenenti queste parole</h1> -->
+            <h3>Titolo in italiano: {{movie.title}} </h3>
+            <h3>Titolo originale: {{movie.original_title}} </h3>
+            <h3>Lingua: {{movie.original_language}} </h3>
+            <h3>Voto: {{movie.vote_average}} </h3>
+            <hr>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

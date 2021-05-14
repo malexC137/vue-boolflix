@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/flag-icon.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
@@ -19,12 +20,34 @@
             <input type="text" v-model="querySearch">
             <button @click="onSearchText">Cerca</button>
         </div>
-        <div class="movie-card" v-for="movie in moviesList">
-            <!-- <h1 v-if="moviesList.length === 0">Spiacenti, non esistono film contenenti queste parole</h1> -->
+        <div v-for="movie in moviesList">
+            <h6>Film</h6>
             <h3>Titolo in italiano: {{movie.title}} </h3>
             <h3>Titolo originale: {{movie.original_title}} </h3>
-            <h3>Lingua: {{movie.original_language}} </h3>
+            <h3>Lingua:
+                <span v-if="movie.original_language === 'en'" class="flag-icon flag-icon-gb"></span>
+                <span v-if="movie.original_language === 'ko'" class="flag-icon flag-icon-kr"></span>
+                <span v-if="movie.original_language === 'ja'" class="flag-icon flag-icon-jp"></span>
+                <span v-if="movie.original_language === 'xx'" class="flag-icon flag-icon-cn"></span>
+                <span v-if="movie.original_language === 'hi'" class="flag-icon flag-icon-in"></span>
+                <span :class="`flag-icon flag-icon-${movie.original_language}`"></span>
+            </h3>
             <h3>Voto: {{movie.vote_average}} </h3>
+            <hr>
+        </div>
+        <div v-for="serie in seriesList">
+            <h6>Serie</h6>
+            <h3>Titolo in italiano: {{serie.name}} </h3>
+            <h3>Titolo originale: {{serie.original_name}} </h3>
+            <h3>Lingua:
+                <span v-if="serie.original_language === 'en'" class="flag-icon flag-icon-gb"></span>
+                <span v-if="serie.original_language === 'ko'" class="flag-icon flag-icon-kr"></span>
+                <span v-if="serie.original_language === 'ja'" class="flag-icon flag-icon-jp"></span>
+                <span v-if="serie.original_language === 'xx'" class="flag-icon flag-icon-cn"></span>
+                <span v-if="serie.original_language === 'hi'" class="flag-icon flag-icon-in"></span>
+                <span :class="`flag-icon flag-icon-${serie.original_language}`"></span>
+            </h3>
+            <h3>Voto: {{serie.vote_average}} </h3>
             <hr>
         </div>
     </div>

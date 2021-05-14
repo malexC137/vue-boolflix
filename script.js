@@ -3,7 +3,8 @@ new Vue({
     data: {
         querySearch: "",
         myTmdbKey: "bc6f81aaa58a9888c0efcd14fa367c64",
-        moviesList: []
+        moviesList: [],
+        seriesList: []
     },
     methods: {
         onSearchText() {
@@ -16,9 +17,14 @@ new Vue({
             }
 
             axios.get("https://api.themoviedb.org/3/search/movie?", axiosParams)
-            .then((resp) => {
-                this.moviesList = resp.data.results
-            })
-        }
+                .then((resp) => {
+                    this.moviesList = resp.data.results
+                }),
+            axios.get("https://api.themoviedb.org/3/search/tv?", axiosParams)
+                .then((result) => {
+                    this.seriesList = result.data.results
+                })
+
+        },
     },
 })

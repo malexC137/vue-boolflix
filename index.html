@@ -30,8 +30,11 @@
             <div class="movies-row">
                 <div v-for="movie in moviesList">
                     <div class="movie-card">
+                        <h5 class="genreTag">Movie</h5>
                         <img :src="imgUrlBasic + sizeUrl + movie.poster_path" alt="">
+                        <img v-if="movie.poster_path === null" src="img/posterPlaceholder.PNG" alt="">
                         <div class="movie-info">
+                            <img src="img/logo.jpg" alt="">
                             <span>
                                 <h5>Titolo:</h5> {{movie.title}}
                             </span>
@@ -63,8 +66,11 @@
             <div class="series-row">
                 <div v-for="serie in seriesList">
                     <div class="serie-card">
+                        <h5 class="genreTag">Serie</h5>
                         <img :src="imgUrlBasic + sizeUrl + serie.poster_path" alt="">
+                        <img v-if="serie.poster_path === null" src="img/posterPlaceholder.PNG" alt="">
                         <div class="serie-info">
+                            <img src="img/logo.jpg" alt="">
                             <span>
                                 <h5>Titolo:</h5> {{serie.name}} 
                             </span>

@@ -5,17 +5,18 @@
 }
 
 html {
-    background-color: black;
     color: white;
 }
 
 h2 {
-    margin-left: 20px;
+    margin: 20px;
 }
 
 main {
     display: flex;
     flex-direction: column;
+    background: rgb(2,0,36);
+    background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(2,0,39,1) 0%, rgba(9,9,121,1) 91%, rgba(0,212,255,1) 100%);
 }
 
 .header {
@@ -37,7 +38,7 @@ main {
 }
 
 .search-button, .search-bar {
-    padding: 2px 5px;
+    padding: 5px 10px;
 }
 
 .movies-row, .series-row {
@@ -63,13 +64,16 @@ main {
 }
 
 .movie-info, .serie-info {
-    display: flex;
+    /* display: flex; */
     flex-direction: column;
     display: none;
 }
 
-.movie-card:hover {
-    background-color: rgb(43, 43, 43);
+.movie-card:hover, .serie-card:hover {
+    background: rgb(2,0,36);
+    background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(2,0,39,1) 0%, rgba(9,9,121,1) 91%, rgba(0,212,255,1) 100%);
+    border: solid 1px white;
+
 }
 
 .movie-card:hover > img, .serie-card:hover > img {
@@ -80,3 +84,18 @@ main {
     display: flex;
 }
 
+.genreTag {
+    position: absolute;
+    top: 5px;
+    left: 20px;
+    color: red;
+}
+
+.movie-info > img, .serie-info > img {
+    width: 35px;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    border-radius: 50%;
+    border: solid 2px black;
+}

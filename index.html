@@ -21,6 +21,8 @@
             <button @click="onSearchText">Cerca</button>
         </div>
         <div v-for="movie in moviesList">
+            <img :src="imgUrlBasic + sizeUrl + movie.poster_path" alt="">
+            <h3> </h3>
             <h6>Film</h6>
             <h3>Titolo in italiano: {{movie.title}} </h3>
             <h3>Titolo originale: {{movie.original_title}} </h3>
@@ -32,10 +34,14 @@
                 <span v-if="movie.original_language === 'hi'" class="flag-icon flag-icon-in"></span>
                 <span :class="`flag-icon flag-icon-${movie.original_language}`"></span>
             </h3>
-            <h3>Voto: {{movie.vote_average}} </h3>
+            <span>Voto: {{movie.vote_average}}
+                <i v-for="star in Math.round(movie.vote_average / 2)" class="fa fa-star" aria-hidden="true"></i>
+                <i v-for="star in 5 - Math.round(movie.vote_average / 2)" class="fa fa-star-o" aria-hidden="true"></i>
+            </span>
             <hr>
         </div>
         <div v-for="serie in seriesList">
+            <img :src="imgUrlBasic + sizeUrl + serie.poster_path" alt="">
             <h6>Serie</h6>
             <h3>Titolo in italiano: {{serie.name}} </h3>
             <h3>Titolo originale: {{serie.original_name}} </h3>

@@ -6,7 +6,7 @@ new Vue({
         moviesList: [],
         seriesList: [],
         imgUrlBasic: "https://image.tmdb.org/t/p/",
-        sizeUrl: "w154",
+        sizeUrl: "w185",
     },
     methods: {
         onSearchText() {

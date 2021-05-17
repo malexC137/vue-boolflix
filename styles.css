@@ -1,0 +1,82 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    background-color: black;
+    color: white;
+}
+
+h2 {
+    margin-left: 20px;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    background-color: black;
+}
+.header-space {
+    flex-grow: 1;
+}
+
+.logo-img {
+    height: 50px;
+}
+
+.search-bar-container {
+    margin-right: 20px;
+}
+
+.search-button, .search-bar {
+    padding: 2px 5px;
+}
+
+.movies-row, .series-row {
+    display: flex;
+    align-items: flex-start;
+    flex-grow: 1;
+    overflow: auto;
+}
+
+.movie-card, .serie-card {
+    width: calc(185px + 20px);
+    height: 278px;
+    margin: 10px;
+    padding: 20px;
+    position: relative;
+    display: flex;
+    border-radius: 5px;
+}
+
+.overview {
+    flex-grow: 1;
+    overflow: auto;
+}
+
+.movie-info, .serie-info {
+    display: flex;
+    flex-direction: column;
+    display: none;
+}
+
+.movie-card:hover {
+    background-color: rgb(43, 43, 43);
+}
+
+.movie-card:hover > img, .serie-card:hover > img {
+    display: none;
+}
+
+.movie-card:hover .movie-info, .serie-card:hover .serie-info {
+    display: flex;
+}
+

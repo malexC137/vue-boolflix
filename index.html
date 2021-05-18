@@ -8,9 +8,10 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="css/flag-icon.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
-    <title>Document</title>
+    <title>Boolflix</title>
 </head>
 
 <body>
@@ -19,6 +20,10 @@
         <div class="header">
             <img class="logo-img" src="img/boolflix.JPEG" alt="">
             <div class="header-space"></div>
+            <!-- <select v-model="selectedGenre" name="" id="" class="select-bar">
+                <option value="All">Seleziona genere</option>
+                <option v-for="genre in movieGenres" > {{ genre }} </option>
+            </select> -->
             <div class="search-bar-container">
                 <input type="text" v-model="querySearch" placeholder="Cerca un film o una serie" class="search-bar">
                 <button @click="onSearchText" class="search-button"><i class="fa fa-search"
@@ -26,7 +31,6 @@
             </div>
         </div>
         <main>
-            <h2>Movies</h2>
             <div class="movies-row">
                 <div v-for="movie in moviesList">
                     <div class="movie-card">
@@ -50,19 +54,23 @@
                                 <span v-if="movie.original_language === 'hi'" class="flag-icon flag-icon-in"></span>
                                 <span :class="`flag-icon flag-icon-${movie.original_language}`"></span>
                             </span>
-                            <h5>Overview: <h6 class="overview"> {{movie.overview}} </h6></h5>
-                            <span><h5>Voto:</h5>
-                                <i v-for="star in Math.round(movie.vote_average / 2)" class="fa fa-star"
+                            <span>
+                                <h5>Voto:</h5>
+                                <i v-for="star in Math.round(movie.vote_average / 2)" class="fa fa-star red"
                                     aria-hidden="true"></i>
                                 <i v-for="star in 5 - Math.round(movie.vote_average / 2)" class="fa fa-star-o"
                                     aria-hidden="true"></i>
                             </span>
                             <hr>
+                            <h5>Overview: <h6> {{movie.overview}} </h6></h5>
+                            <!-- <p v-if="movie.actors">
+                                <span v-for="actor in movie.actors.slice(0, 5)"> {{ actor.original_name }} </span>
+                            </p> -->
                         </div>
                     </div>
                 </div>
             </div>
-            <h2>Series</h2>
+            <hr>
             <div class="series-row">
                 <div v-for="serie in seriesList">
                     <div class="serie-card">
@@ -72,10 +80,10 @@
                         <div class="serie-info">
                             <img src="img/logo.jpg" alt="">
                             <span>
-                                <h5>Titolo:</h5> {{serie.name}} 
+                                <h5>Titolo:</h5> {{serie.name}}
                             </span>
                             <span>
-                                <h5>Titolo originale:</h5> {{serie.original_name}} 
+                                <h5>Titolo originale:</h5> {{serie.original_name}}
                             </span>
                             <span>Lingua:
                                 <span v-if="serie.original_language === 'en'" class="flag-icon flag-icon-gb"></span>
@@ -85,14 +93,16 @@
                                 <span v-if="serie.original_language === 'hi'" class="flag-icon flag-icon-in"></span>
                                 <span :class="`flag-icon flag-icon-${serie.original_language}`"></span>
                             </span>
-                            <h5>Overview: <h6 class="overview"> {{serie.overview}} </h6></h5>
-                            <span><h5>Voto:</h5>
-                                <i v-for="star in Math.round(serie.vote_average / 2)" class="fa fa-star"
+                            <span>
+                                <h5>Voto:</h5>
+                                <i v-for="star in Math.round(serie.vote_average / 2)" class="fa fa-star red"
                                     aria-hidden="true"></i>
                                 <i v-for="star in 5 - Math.round(serie.vote_average / 2)" class="fa fa-star-o"
                                     aria-hidden="true"></i>
                             </span>
                             <hr>
+                            <h5>Overview: <h6> {{serie.overview}} </h6>
+                            </h5>
                         </div>
                     </div>
                 </div>

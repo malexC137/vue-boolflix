@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="css/flag-icon.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -33,10 +33,9 @@
         <main>
             <div class="movies-row">
                 <div v-for="movie in moviesList">
-                    <div class="movie-card">
+                    <div class="movie-card" @mouseover="getCast(movie)">
                         <h5 class="genreTag">Movie</h5>
-                        <img :src="imgUrlBasic + sizeUrl + movie.poster_path" alt="">
-                        <img v-if="movie.poster_path === null" src="img/posterPlaceholder.PNG" alt="">
+                        <img :src="getImg(movie)" alt="">
                         <div class="movie-info">
                             <img src="img/logo.jpg" alt="">
                             <span>
@@ -45,15 +44,9 @@
                             <span>
                                 <h5>Titolo originale:</h5> {{movie.original_title}}
                             </span>
-                            <span>
-                                <h5>Lingua:</h5>
-                                <span v-if="movie.original_language === 'en'" class="flag-icon flag-icon-gb"></span>
-                                <span v-if="movie.original_language === 'ko'" class="flag-icon flag-icon-kr"></span>
-                                <span v-if="movie.original_language === 'ja'" class="flag-icon flag-icon-jp"></span>
-                                <span v-if="movie.original_language === 'xx'" class="flag-icon flag-icon-cn"></span>
-                                <span v-if="movie.original_language === 'hi'" class="flag-icon flag-icon-in"></span>
-                                <span :class="`flag-icon flag-icon-${movie.original_language}`"></span>
-                            </span>
+                            <h5>Lingua:
+                                <span class="flag-icon" :class="`flag-icon-${getFlag(movie)}`"></span>
+                            </h5>
                             <span>
                                 <h5>Voto:</h5>
                                 <i v-for="star in Math.round(movie.vote_average / 2)" class="fa fa-star red"
@@ -62,10 +55,12 @@
                                     aria-hidden="true"></i>
                             </span>
                             <hr>
-                            <h5>Overview: <h6> {{movie.overview}} </h6></h5>
-                            <!-- <p v-if="movie.actors">
+                            <h5>Overview: <h6> {{movie.overview}} </h6>
+                            </h5>
+                            <hr>
+                            <h6 v-if="movie.actors">Actors:
                                 <span v-for="actor in movie.actors.slice(0, 5)"> {{ actor.original_name }} </span>
-                            </p> -->
+                            </h6>
                         </div>
                     </div>
                 </div>
@@ -73,10 +68,9 @@
             <hr>
             <div class="series-row">
                 <div v-for="serie in seriesList">
-                    <div class="serie-card">
+                    <div class="serie-card" @mouseover="getCast(serie)">
                         <h5 class="genreTag">Serie</h5>
-                        <img :src="imgUrlBasic + sizeUrl + serie.poster_path" alt="">
-                        <img v-if="serie.poster_path === null" src="img/posterPlaceholder.PNG" alt="">
+                        <img :src="getImg(serie)" alt="">
                         <div class="serie-info">
                             <img src="img/logo.jpg" alt="">
                             <span>
@@ -85,14 +79,9 @@
                             <span>
                                 <h5>Titolo originale:</h5> {{serie.original_name}}
                             </span>
-                            <span>Lingua:
-                                <span v-if="serie.original_language === 'en'" class="flag-icon flag-icon-gb"></span>
-                                <span v-if="serie.original_language === 'ko'" class="flag-icon flag-icon-kr"></span>
-                                <span v-if="serie.original_language === 'ja'" class="flag-icon flag-icon-jp"></span>
-                                <span v-if="serie.original_language === 'xx'" class="flag-icon flag-icon-cn"></span>
-                                <span v-if="serie.original_language === 'hi'" class="flag-icon flag-icon-in"></span>
-                                <span :class="`flag-icon flag-icon-${serie.original_language}`"></span>
-                            </span>
+                            <h5>Lingua:
+                                <span class="flag-icon" :class="`flag-icon-${getFlag(serie)}`"></span>
+                            </h5>
                             <span>
                                 <h5>Voto:</h5>
                                 <i v-for="star in Math.round(serie.vote_average / 2)" class="fa fa-star red"
@@ -103,6 +92,10 @@
                             <hr>
                             <h5>Overview: <h6> {{serie.overview}} </h6>
                             </h5>
+                            <hr>
+                            <h6 v-if="serie.actors">Actors:
+                                <span v-for="actor in serie.actors.slice(0, 5)"> {{ actor.original_name }} </span>
+                            </h6>
                         </div>
                     </div>
                 </div>

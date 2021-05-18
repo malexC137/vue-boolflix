@@ -49,17 +49,14 @@
                             </h5>
                             <span>
                                 <h5>Voto:</h5>
-                                <i v-for="star in Math.round(movie.vote_average / 2)" class="fa fa-star red"
-                                    aria-hidden="true"></i>
-                                <i v-for="star in 5 - Math.round(movie.vote_average / 2)" class="fa fa-star-o"
-                                    aria-hidden="true"></i>
+                                <i v-for="star in getStars(movie)" class="fa red" :class="{'fa-star' : star === true,'fa-star-o' : star === false}" aria-hidden="true"></i>
                             </span>
                             <hr>
                             <h5>Overview: <h6> {{movie.overview}} </h6>
                             </h5>
                             <hr>
                             <h6 v-if="movie.actors">Actors:
-                                <span v-for="actor in movie.actors.slice(0, 5)"> {{ actor.original_name }} </span>
+                                <span v-for="actor in movie.actors.slice(0, 5)"> {{ actor.original_name }}, </span>
                             </h6>
                         </div>
                     </div>
@@ -84,17 +81,14 @@
                             </h5>
                             <span>
                                 <h5>Voto:</h5>
-                                <i v-for="star in Math.round(serie.vote_average / 2)" class="fa fa-star red"
-                                    aria-hidden="true"></i>
-                                <i v-for="star in 5 - Math.round(serie.vote_average / 2)" class="fa fa-star-o"
-                                    aria-hidden="true"></i>
+                                <i v-for="star in getStars(serie)" class="fa red" :class="{'fa-star' : star === true,'fa-star-o' : star === false}" aria-hidden="true"></i>
                             </span>
                             <hr>
                             <h5>Overview: <h6> {{serie.overview}} </h6>
                             </h5>
                             <hr>
                             <h6 v-if="serie.actors">Actors:
-                                <span v-for="actor in serie.actors.slice(0, 5)"> {{ actor.original_name }} </span>
+                                <span v-for="actor in serie.actors.slice(0, 5)"> {{ actor.original_name }}, </span>
                             </h6>
                         </div>
                     </div>

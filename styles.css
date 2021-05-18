@@ -4,26 +4,34 @@
     box-sizing: border-box;
 }
 
-html {
-    color: white;
+::-webkit-scrollbar {
+    display: none;
 }
 
-h2 {
-    margin: 20px;
+html {
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    background: rgb(2,0,36);
+    background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(2,0,39,1) 0%, rgba(9,9,121,1) 91%, rgba(0,212,255,1) 100%);
 }
+
+/* h2 {
+    margin: 20px;
+} */
 
 main {
     display: flex;
     flex-direction: column;
-    background: rgb(2,0,36);
-    background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(2,0,39,1) 0%, rgba(9,9,121,1) 91%, rgba(0,212,255,1) 100%);
+}
+
+.red {
+    color: red;
 }
 
 .header {
     display: flex;
     padding: 10px;
     align-items: center;
-    background-color: black;
 }
 .header-space {
     flex-grow: 1;
@@ -31,6 +39,11 @@ main {
 
 .logo-img {
     height: 50px;
+}
+
+.select-bar {
+    margin-right: 20px;
+    padding: 5px 10px;
 }
 
 .search-bar-container {
@@ -43,9 +56,9 @@ main {
 
 .movies-row, .series-row {
     display: flex;
-    align-items: flex-start;
     flex-grow: 1;
     overflow: auto;
+    padding: 20px;
 }
 
 .movie-card, .serie-card {
@@ -56,22 +69,19 @@ main {
     position: relative;
     display: flex;
     border-radius: 5px;
-}
-
-.overview {
     flex-grow: 1;
     overflow: auto;
 }
 
 .movie-info, .serie-info {
-    /* display: flex; */
     flex-direction: column;
     display: none;
 }
 
 .movie-card:hover, .serie-card:hover {
     background: rgb(2,0,36);
-    background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(2,0,39,1) 0%, rgba(9,9,121,1) 91%, rgba(0,212,255,1) 100%);
+    background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(2,0,39,1) 0%, rgba(9,9,121,1) 100%);
+    box-shadow: 0 4px 8px 0 rgba(0,212,255,1), 0 6px 20px 0 rgba(0,212,255,1);
     border: solid 1px white;
 
 }
@@ -98,4 +108,44 @@ main {
     top: 5px;
     border-radius: 50%;
     border: solid 2px black;
+}
+
+.row-title {
+    flex-grow: 0;
+}
+
+hr {
+    margin: 5px 0;
+    border: solid 1px red
+}
+
+@media all and (max-width: 768px) {
+    main {
+        flex-direction: row;
+    }
+
+    .movies-row, .series-row {
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .search-bar-container {
+        margin-top: 10px;
+    }
+    
+    .select-bar {
+        margin-top: 10px;
+        order: 1;
+    }
+}
+
+@media all and (max-width: 480px) {
+    main {
+        flex-direction: column;
+    }
 }

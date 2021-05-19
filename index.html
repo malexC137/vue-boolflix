@@ -20,10 +20,10 @@
         <div class="header">
             <img class="logo-img" src="img/boolflix.JPEG" alt="">
             <div class="header-space"></div>
-            <!-- <select v-model="selectedGenre" name="" id="" class="select-bar">
+            <select v-model="selectedGenre" name="" id="" class="select-bar">
                 <option value="All">Seleziona genere</option>
-                <option v-for="genre in movieGenres" > {{ genre }} </option>
-            </select> -->
+                <option v-for="genre in genresList" > {{ genre.name }} </option>
+            </select>
             <div class="search-bar-container">
                 <input type="text" v-model="querySearch" placeholder="Cerca un film o una serie" class="search-bar">
                 <button @click="onSearchText" class="search-button"><i class="fa fa-search"

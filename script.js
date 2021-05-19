@@ -7,8 +7,21 @@ new Vue({
         seriesList: [],
         imgUrlBasic: "https://image.tmdb.org/t/p/",
         sizeUrl: "w185",
-        // currentMovie: null,
-        // selectedGenre: 'All'
+        selectedGenre: 'All',
+        genresList: []
+    },
+    mounted() {
+        const axiosOptions = {
+            params: {
+                api_key: this.myTmdbKey,
+                language: "it-IT"
+            }
+        }
+
+        axios.get(`https://api.themoviedb.org/3/genre/movie/list?`, axiosOptions)
+            .then(resp => {
+                this.genresList = resp.data.genres
+            })
     },
     methods: {
         onSearchText() {
@@ -23,11 +36,11 @@ new Vue({
             axios.get("https://api.themoviedb.org/3/search/movie?", axiosParams)
                 .then((resp) => {
                     this.moviesList = resp.data.results
-                }),
-                axios.get("https://api.themoviedb.org/3/search/tv?", axiosParams)
-                    .then((result) => {
-                        this.seriesList = result.data.results
-                    })
+                })
+            axios.get("https://api.themoviedb.org/3/search/tv?", axiosParams)
+                .then((result) => {
+                    this.seriesList = result.data.results
+                })
         },
 
         getImg(movie) {
@@ -62,7 +75,7 @@ new Vue({
             for (i = 1; i <= 5; i++) {
                 starsArr.push(i <= movieVote)
             }
-            
+
             return starsArr
         },
 
@@ -88,18 +101,23 @@ new Vue({
         }
 
     },
-    // computed: {
-    //     movieGenres(movie) {
-    //         const genresArr = []
-    //         const axiosOptions = {
-    //             api_key: this.myTmdbKey,
-    //             language: "it-IT"
-    //         }
-    //         axios.get(`https://api.themoviedb.org/3/genre/movie/list`, axiosOptions)
-    //             .then(resp => {
-    //                 genresArr.push(resp.data.genres)
-    //             })
-    //         return genresArr
-    //     }
-    // }
+    computed: {
+        // onSelectGenre() {
+        //     const axiosParams = {
+        //         params: {
+        //             api_key: this.myTmdbKey,
+        //             query: this.querySearch,
+        //             language: "it-IT"
+        //         }
+        //     }
+
+        //     axios.get("https://api.themoviedb.org/3/trending/movie/day?", axiosParams)
+        //         .then((resp) => {
+        //             if (this.selectedGenre = "All") {
+        //                 this.moviesList.push(resp.data.results)
+        //             }
+        //         })
+        //         return this.moviesList
+        // },
+    }
 })
